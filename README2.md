@@ -1,10 +1,4 @@
-
-
-
-
-
-
-Here's a comprehensive README for your project, **LangSmith Summizer**, detailing the challenges faced and the solutions implemented:
+Certainly! Here's an updated README for your project, **LangSmith Summizer**, incorporating the insights and solutions discussed:
 
 ---
 
@@ -94,6 +88,42 @@ summaries = [
 ```
 
 This approach ensured that missing or malformed summaries were gracefully handled.
+
+## 🧠 LangSmith Integration
+
+To debug and monitor the application's behavior, LangSmith was integrated:
+
+1. **Enable Tracing**: Set environment variables to enable tracing:
+
+   ```bash
+   export LANGCHAIN_TRACING_V2="true"
+   export LANGCHAIN_API_KEY="your-api-key"
+   ```
+
+2. **Initialize Client**: In the application code, initialize the LangSmith client:
+
+   ```python
+   from langsmith import Client
+
+   client = Client()
+   ```
+
+3. **Create Project**: Create a new project for the application:
+
+   ```python
+   session = client.create_project(
+       project_name="LangSmith Summizer",
+       description="A project that summarizes large texts into concise summaries"
+   )
+   ```
+
+4. **Set Project**: Set the created project as the default:
+
+   ```python
+   os.environ["LANGCHAIN_PROJECT"] = "LangSmith Summizer"
+   ```
+
+By integrating LangSmith, detailed traces of the application's execution were logged, allowing for visualization and debugging through the LangSmith dashboard.
 
 ## 🛠️ Technologies Used
 
